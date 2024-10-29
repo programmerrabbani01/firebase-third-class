@@ -6,7 +6,12 @@ import {
 } from "firebase/auth";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { auth, githubProvider, googleProvider } from "../../firebase/auth.js";
+import {
+  auth,
+  facebookProvider,
+  githubProvider,
+  googleProvider,
+} from "../../firebase/auth.js";
 import { uploadFile } from "../../firebase/fileData.js";
 import { createAStaff } from "../../firebase/models.js";
 import { serverTimestamp } from "firebase/firestore";
@@ -83,9 +88,13 @@ const Register = () => {
   const handleGoogleRegistration = async () => {
     await signInWithPopup(auth, googleProvider);
   };
-
+  // github registration
   const handleGitHubLogIn = async () => {
     await signInWithPopup(auth, githubProvider);
+  };
+  // facebook registration
+  const handleFaceBookbLogIn = async () => {
+    await signInWithPopup(auth, facebookProvider);
   };
 
   return (
@@ -325,7 +334,10 @@ const Register = () => {
                     </svg>
                     <span>Sign in with Google</span>
                   </button>
-                  <button className="bg-[#1877F2] flex gap-x-3 text-sm sm:text-base items-center justify-center text-white rounded-lg hover:bg-[#1877F2]/80 duration-300 transition-colors border border-transparent px-8 py-2.5">
+                  <button
+                    onClick={handleFaceBookbLogIn}
+                    className="bg-[#1877F2] flex gap-x-3 text-sm sm:text-base items-center justify-center text-white rounded-lg hover:bg-[#1877F2]/80 duration-300 transition-colors border border-transparent px-8 py-2.5"
+                  >
                     <svg
                       className="w-5 h-5 sm:h-6 sm:w-6"
                       viewBox="0 0 24 24"
